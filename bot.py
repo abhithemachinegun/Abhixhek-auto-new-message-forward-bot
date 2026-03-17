@@ -1,6 +1,14 @@
 import os
 import sys
 import asyncio
+
+# --- FIX FOR NEWER PYTHON VERSIONS (Render/Koyeb) ---
+try:
+    asyncio.get_event_loop()
+except RuntimeError:
+    asyncio.set_event_loop(asyncio.new_event_loop())
+# ----------------------------------------------------
+
 from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -164,3 +172,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+    
